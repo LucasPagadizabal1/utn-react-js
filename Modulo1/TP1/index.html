@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Contact V7</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Seguro No Pagamos Cooperativa</title>
+</head>
+
+<body>
+    <div class="container-contact">
+        <div class="wrap-contact">
+            <form class="contact-form">
+                <span class="contact-form-title">Seguro No Pagamos Cooperativa</span>
+
+                <div class="wrap-input">
+                    <input class="input" id="firstName" type="text" name="firstName" placeholder="Nombre">
+                </div>
+                <div class="wrap-input">
+                    <input class="input" id="lastName" type="text" name="lastName" placeholder="Apellido">
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" id="dni" type="number" name="dni" placeholder="DNI">
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" id="email" type="text" name="email" placeholder="Email">
+                </div>
+
+                <div class="wrap-input">
+                    <input class="input" id="phone" type="text" name="phone" placeholder="Tel&eacute;fono">
+                </div>
+
+                <div class="wrap-input">
+                    <select class="input" id="typeInsurance" onchange="changeInsurance()">
+                        <option value="B" selected>B&aacute;sico</option>
+                        <option value="I">Intermedio</option>
+                        <option value="P">Premiun</option>
+                      </select>
+                </div>
+
+                <div class="wrap-output">
+                    <p class="pValueInsurance">Valor del seguro:</p>
+                    <span id="valueInsurance">500</span>
+                </div>
+
+                <div class="container-btn-send">
+                    <button class="btn-send" onclick="SendQuote()"> Enviar </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

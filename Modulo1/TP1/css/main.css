@@ -1,0 +1,132 @@
+p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.container-contact {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #e6e6e6;
+}
+
+.wrap-contact {
+    width: 550px;
+    background: transparent;
+    padding: 30px 0 80px 0;
+}
+
+.contact-form {
+    width: 100%;
+}
+
+.contact-form-title {
+    display: block;
+    font-family: Oswald-Medium;
+    font-size: 30px;
+    color: #43383e;
+    line-height: 1.2;
+    text-align: left;
+    padding-bottom: 35px;
+}
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    margin-bottom: 17px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    background: transparent;
+    font-family: Oswald-Medium;
+    font-size: 15px;
+    color: #43383e;
+    line-height: 1.2;
+    padding: 0 5px;
+    height: 62px;
+}
+
+select.input>option {
+    color: gray;
+}
+
+.wrap-output {
+    width: 100%;
+    position: relative;
+    margin-bottom: 17px;
+    background-color: #fff;
+    height: 62px;
+}
+
+.pValueInsurance {
+    padding-top: 15px;
+    padding-left: 5px;
+    font-size: 15px;
+    position: relative;
+    width: 88%;
+    display: inline-block;
+}
+
+#valueInsurance {
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.btn-send {
+    background-color: #0d6efd;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-btn-send {
+    text-align: right;
+}
