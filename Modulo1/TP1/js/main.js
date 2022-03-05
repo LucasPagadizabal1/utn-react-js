@@ -1,5 +1,5 @@
-function changeInsurance() {
-    var typeInsurance = document.getElementById("typeInsurance").value;
+function changeTypeInsurance() {
+    var typeInsurance = document.getElementById("typeInsuranceId").value;
 
     switch (typeInsurance) {
         case "B":
@@ -16,10 +16,26 @@ function changeInsurance() {
     }
 }
 
+changeTypeInsurance();
+
 function SetValueInsurance(value) {
-    document.getElementById("valueInsurance").innerHTML = value;
+    document.getElementById("typeInsuranceValueId").value = String.fromCharCode(36) + value;
 }
 
-function SendQuote() {
-    alert("La cotización fue enviada. En breve un asesor se comunicará con usted. Gracias");
+function SendInfo(e) {
+    e.preventDefault();
+
+    alert("La información fue enviada");
+    cleanForm();
+    return false;
+}
+
+function cleanForm() {
+    document.getElementById("firstNameId").value = "";
+    document.getElementById("lastNameId").value = "";
+    document.getElementById("dniId").value = "";
+    document.getElementById("emailId").value = "";
+    document.getElementById("phoneId").value = "";
+    document.getElementById("addressId").value = "";
+    changeTypeInsurance();
 }
