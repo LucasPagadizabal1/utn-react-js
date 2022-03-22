@@ -39,7 +39,7 @@ class FormUser extends Component{
                     </div>
 
                     <div className="container-submit">
-                        <button type="button">Enviar</button>
+                        <button type="submit">Enviar</button>
                     </div>
                     
                 </form>
