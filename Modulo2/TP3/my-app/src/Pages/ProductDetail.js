@@ -9,8 +9,7 @@ const styles = {
     }
 }
 
-
-function Product(){
+function ProductDetail(){
     const {id} = useParams()
     const [loading,setLoading] = useState(true)
     const [product,setProduct] = useState({})
@@ -22,7 +21,7 @@ function Product(){
                 try{
                     setLoading(true)
                     const response = await getProductById(id)
-                    console.log(response.data)
+
                     setProduct(response.data)
                     setLoading(false)
                 }catch(e){
@@ -48,13 +47,13 @@ function Product(){
             <>
                 <div>
                     <p>{product.title}</p>
-                    <p>{product.price}</p>
+                    <p>${product.price}</p>
                     <img src={product.thumbnail} style={styles.img}></img>
+                    <button> Comprar </button>
                 </div>
             </>
         )
-    }    
-
+    }
 }
 
-export default Product
+export default ProductDetail

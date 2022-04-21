@@ -7,7 +7,7 @@ function Product(props){
         <>
             <div className="product">
                 <p>{name}</p>
-                <p>{price}</p>
+                <p>${price}</p>
                 <p>{description}</p>
                 <Link to={'/product/'+id}>Ver Detalle</Link>
             </div>
