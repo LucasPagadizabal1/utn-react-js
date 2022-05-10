@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from "react"
 import {useParams} from "react-router-dom"
-import { getProductById } from "../Services/productService"
+import { getProductById } from "../Services/Firebase/productService"
 import Loading from "../Components/Loading";
+import { Card } from "react-bootstrap";
 
 const styles = {
     img:{
@@ -17,18 +18,17 @@ function ProductDetail(){
     useEffect(()=>
         {
             const request = async ()=>{
-                
+
                 try{
                     setLoading(true)
                     const response = await getProductById(id)
-
-                    setProduct(response.data)
+                    setProduct(response)
                     setLoading(false)
                 }catch(e){
                     console.log(e)
                     setLoading(false)
                 }
-                
+
             }
             request()
         }, [id]
@@ -40,17 +40,26 @@ function ProductDetail(){
             <>
                 <Loading/>
             </>
-           
+
         )
     }else{
         return(
             <>
-                <div>
-                    <p>{product.title}</p>
-                    <p>${product.price}</p>
-                    <img src={product.thumbnail} style={styles.img}></img>
-                    <button> Comprar </button>
-                </div>
+                <Card>
+                    <Card.Img style={styles.img} variant="top" src={product.data().img} />
+                    <Card.Body>
+                        <Card.Title>{product.data().name}</Card.Title>
+                        <Card.Text>
+                            {product.data().description}
+                        </Card.Text>
+                        <Card.Text>
+                            ${product.data().price}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        SKU: {product.data().sku}
+                    </Card.Footer>
+                </Card>
             </>
         )
     }

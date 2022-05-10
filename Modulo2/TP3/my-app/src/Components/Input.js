@@ -1,12 +1,14 @@
+import {Form} from 'react-bootstrap'
+
 function Input(props){
     const {label,type,placeholder,name,register} = props
 
     return(
         <>
-            <div>
-                <label>{label}</label>
-                <input type={type || "text"} name={name || ''} placeholder={placeholder} {...register} />
-            </div>
+            <Form.Floating className="mb-3">
+                    <Form.Control id={name} type={type || "text"} placeholder={placeholder} {...register} />
+                    <label htmlFor={name}>{placeholder}</label>
+            </Form.Floating>
         </>
     )
 }
