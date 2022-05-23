@@ -1,35 +1,39 @@
-import { useForm } from "react-hook-form";
 import React,{useState} from "react"
+import { useForm } from "react-hook-form";
 import Input from "../Components/Input";
-import {Button, Form,Container,Row,Col} from 'react-bootstrap'
-import firebase from '../Config/firebase'
+import {Button, Form,Row,Container,Col} from 'react-bootstrap'
+import firebase from "../Config/firebase"
 import Alert from 'react-bootstrap/Alert'
+import {useNavigate} from "react-router-dom"
 
-function Register(){
-    
+function AddProduct(){
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [msgError,setMsgError] = useState('El campo es requerido')
-    
-    const onSubmit= async (data)=>{
+    const navigate = useNavigate()
+
+
+    const onSubmit=async (data)=>{
         try{
-            const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email,data.password)
-            
-            if(responseUser.user.uid){
-                const document = await firebase.db.collection("user")
-                .add({
-                    name:data.name,
-                    lastName:data.lastName,
-                    userId:responseUser.user.uid
-                })
+            const document = await firebase.firestore().collection("product")
+            .add({
+                name:data.name,
+                price:data.price,
+                description:data.description,
+                sku:data.sku,
+                img:data.img
+            })
+
+            if(document){
+                navigate("/")
             }
         }catch(e){
             console.log(e)
         }
+        
     }
-
     return(
-        <>
-            <Container>
+        <Container>
                 <Row>
                     <Col md={{ span: 6, offset: 3 }}>
                         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -42,25 +46,28 @@ function Register(){
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Input label="Apellido" placeholder="Apellido" register={{...register("lastName", { required: true })}} />
-                                        {errors.lastName && <Alert variant='danger'> {msgError} </Alert>}
+                                        <Input label="Descripcion" placeholder="Descripcion" register={{...register("description", { required: true })}} />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Input label="Email" type="email" placeholder="Email" register={{...register("email", { required: true })}} />
-                                        {errors.email && <Alert variant='danger'> {msgError} </Alert>}
+                                        <Input label="Precio" type="number" placeholder="Precio" register={{...register("price", { required: true })}} />
+                                        {errors.price && <Alert variant='danger'> {msgError} </Alert>}
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Input label="Contraseña" type="password" placeholder="Contraseña" register={{...register("password", { required: true })}} />
-                                        {errors.password && <Alert variant='danger'> {msgError} </Alert>}
+                                        <Input label="SKU" type="text" placeholder="SKU" register={{...register("sku")}} />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Button type="submit" variant="primary">Registrarse</Button>
+                                        <Input label="Imagen URL" type="text" placeholder="Imagen URL" register={{...register("img")}} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Button type="submit" variant="primary">Agregar</Button>
                                     </Col>
                                 </Row>
                             </Container>               
@@ -68,8 +75,7 @@ function Register(){
                     </Col>
                 </Row>
             </Container>
-        </>
-    )
-      
+    )    
 }
-export default Register
+
+export default AddProduct 

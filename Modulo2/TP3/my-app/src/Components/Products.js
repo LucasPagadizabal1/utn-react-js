@@ -1,8 +1,16 @@
 import { useState,useEffect } from "react"
 import Product from '../Components/Product'
 import Loading from '../Components/Loading'
-import {Container,Row} from 'react-bootstrap'
+import {Container,Row,Button,Col} from 'react-bootstrap'
 import { getAllProducts } from '../Services/Firebase/productService'
+import AuthContext from '../Context/AuthContext'
+import { Link } from "react-router-dom"
+
+const styles = {
+    buttonAdd:{
+        margin:"2%"
+    }
+}
 
 function Products(){
     const [productList,setProductList] = useState([])
@@ -28,13 +36,35 @@ function Products(){
         )
     }else{
         return(
-            <div>
-                <Container>
-                    <Row xs={1} md={3}>
-                        {productList.map(pl=><Product name={pl.data().name} price={pl.data().price} description={pl.data().description} id={pl.id} />)}
-                    </Row>
-                </Container>  
-            </div>            
+            <>
+                <div>
+                    <AuthContext.Consumer>
+                        {
+                            context=>
+                            <>
+                                {   context.userLogin &&
+                                    <Container>
+                                        <Row xs={1} md={3}>
+                                            <Col  xs={4}>
+                                            <Button variant="primary" as={Link} to={'/product/add'}>Agregar producto</Button>
+                                            </Col>                        
+                                        </Row>
+                                    </Container>
+                                }
+
+                                <Container>
+                                    <Row xs={1} md={2}>
+                                        {productList.map(pl=><Product key={pl.id} name={pl.data().name} price={pl.data().price} description={pl.data().description} id={pl.id} />)}
+                                    </Row>
+                                </Container>  
+                            </>
+                        }                       
+                    </AuthContext.Consumer>
+                   
+                    
+                </div>     
+            </>
+                   
         )
     }
 }

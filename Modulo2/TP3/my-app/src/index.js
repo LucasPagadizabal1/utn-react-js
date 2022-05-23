@@ -6,12 +6,15 @@ import { BrowserRouter as Router } from "react-router-dom"
 import Menu from './Components/Menu';
 import Public from './Routes/Public';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthProvider from './Context/AuthProvider';
 
 ReactDOM.render(
   <React.StrictMode>
    <Router>
-      <Menu />
-      <Public />
+      <AuthProvider>
+        <Menu />
+        <Public />
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
