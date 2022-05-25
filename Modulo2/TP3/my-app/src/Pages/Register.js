@@ -4,12 +4,14 @@ import Input from "../Components/Input";
 import {Button, Form,Container,Row,Col} from 'react-bootstrap'
 import firebase from '../Config/firebase'
 import Alert from 'react-bootstrap/Alert'
+import {useNavigate} from "react-router-dom"
 
 function Register(){
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [msgError,setMsgError] = useState('El campo es requerido')
-    
+    const navigate = useNavigate()
+
     const onSubmit= async (data)=>{
         try{
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email,data.password)
@@ -21,6 +23,8 @@ function Register(){
                     lastName:data.lastName,
                     userId:responseUser.user.uid
                 })
+
+                navigate("/")
             }
         }catch(e){
             console.log(e)
