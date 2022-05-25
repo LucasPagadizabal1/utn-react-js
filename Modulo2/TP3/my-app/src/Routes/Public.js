@@ -25,12 +25,12 @@ function Public() {
 
               {context.userLogin &&
                 <>
-                  <Route path='/product/:id' element={<ProductDetail />} />
+                  
                   <Route path='/product/add' element={<AddProduct/>} />
                   <Route path='/product/edit/:id' element={<EditProduct/>} />
                 </>
               }
-
+              <Route path='/product/:id' element={<ProductDetail />} />
               <Route path='*' element={<Home />} />
             </Routes>
       }

@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom"
 function Register(){
     
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [msgError,setMsgError] = useState('El campo es requerido')
+    const [msgError] = useState('El campo es requerido')
     const navigate = useNavigate()
 
     const onSubmit= async (data)=>{
@@ -17,7 +17,7 @@ function Register(){
             const responseUser = await firebase.auth.createUserWithEmailAndPassword(data.email,data.password)
             
             if(responseUser.user.uid){
-                const document = await firebase.db.collection("user")
+                await firebase.db.collection("user")
                 .add({
                     name:data.name,
                     lastName:data.lastName,
